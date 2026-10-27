@@ -1,0 +1,8 @@
+jupyter
+nbconvert
+nbclient
+pandas
+numpy
+plotly
+yfinance
+requests
