@@ -1,6 +1,279 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
+<style id="custom-improvements">
+/* ================================================================
+   MELHORIAS VISUAIS CUSTOMIZADAS — Petrobras Análise Financeira
+   ================================================================ */
+
+/* Rolagem suave global */
+html { scroll-behavior: smooth; }
+
+/* Layout principal mais respirável em telas grandes */
+@media (min-width: 1024px) {
+  body.jp-Notebook {
+    padding: 12px 6% 4% !important;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1023px) {
+  body.jp-Notebook { padding: 10px 3% 4% !important; }
+}
+
+/* ---------- CABEÇALHO / BANNER ---------- */
+.jp-Notebook .jp-MarkdownOutput > div[style*="linear-gradient"] {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 83, 53, 0.22);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.jp-Notebook .jp-MarkdownOutput > div[style*="linear-gradient"]::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.12) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+.jp-Notebook .jp-MarkdownOutput > div[style*="linear-gradient"]:hover::after {
+  transform: translateX(100%);
+}
+.jp-Notebook .jp-MarkdownOutput > div[style*="linear-gradient"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 83, 53, 0.35);
+}
+
+/* Logo responsiva */
+.jp-Notebook .jp-MarkdownOutput img[alt="Logotipo SG"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 8px auto 20px;
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.4s ease;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.08));
+}
+.jp-Notebook .jp-MarkdownOutput img[alt="Logotipo SG"]:hover {
+  transform: scale(1.015);
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.15));
+}
+
+/* ---------- TEXTO "AUTOR / BASE / DATA" (mais escuro e visível) ---------- */
+.jp-RenderedMarkdown p,
+.jp-RenderedHTMLCommon p {
+  color: #1a1a1a !important;
+  line-height: 1.75;
+}
+
+/* Aplica destaque ao bloco de autoria */
+.jp-RenderedMarkdown p:has(br),
+.jp-RenderedHTMLCommon p:has(br) {
+  color: #1a1a1a !important;
+  background: linear-gradient(90deg, #f6faf8, #eef7f2);
+  border-left: 4px solid #007A4D;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+/* Fallback p/ navegadores sem :has() */
+.jp-RenderedMarkdown p strong,
+.jp-RenderedHTMLCommon p strong {
+  color: #0a3d2a !important;
+}
+
+/* ---------- TÍTULOS (h1–h4) ---------- */
+.jp-RenderedHTMLCommon h1 {
+  color: #005335 !important;
+  border-bottom: 3px solid #FFCC00;
+  padding-bottom: 8px;
+  margin-top: 1.6em;
+}
+.jp-RenderedHTMLCommon h2 {
+  color: #006b43 !important;
+  border-left: 6px solid #007A4D;
+  padding-left: 12px;
+  margin-top: 1.4em;
+}
+.jp-RenderedHTMLCommon h3 {
+  color: #007A4D !important;
+}
+
+/* ---------- CÉLULAS / CARDS ---------- */
+.jp-Cell {
+  border-radius: 10px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+.jp-Cell.jp-CodeCell {
+  margin: 18px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+.jp-Cell.jp-CodeCell:hover {
+  box-shadow: 0 6px 22px rgba(0,0,0,.11);
+}
+.jp-InputArea-editor {
+  border-radius: 8px 8px 0 0;
+}
+
+/* ---------- TABELAS ---------- */
+.jp-RenderedHTMLCommon table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 16px rgba(0,0,0,.08);
+  font-size: 14px;
+}
+.jp-RenderedHTMLCommon thead {
+  background: linear-gradient(135deg, #005335, #007A4D) !important;
+}
+.jp-RenderedHTMLCommon thead th {
+  color: #fff !important;
+  padding: 12px 14px;
+  font-weight: 600;
+  border: none !important;
+  text-align: left;
+}
+.jp-RenderedHTMLCommon tbody td {
+  padding: 10px 14px;
+  color: #1a1a1a !important;
+  border-bottom: 1px solid #eef2f0;
+}
+.jp-RenderedHTMLCommon tbody tr {
+  transition: background 0.2s ease;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(even) {
+  background: #f7faf8 !important;
+}
+.jp-RenderedHTMLCommon tbody tr:hover {
+  background: #e8f5ef !important;
+}
+
+/* ---------- GRÁFICOS PLOTLY ---------- */
+.jp-OutputArea-output .plotly-graph-div {
+  max-width: 100% !important;
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.jp-OutputArea-output .plotly-graph-div:hover {
+  box-shadow: 0 8px 26px rgba(0,0,0,.13);
+}
+.jp-OutputArea-output svg,
+.jp-RenderedImage img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 10px;
+}
+
+/* ---------- BARRA DE PROGRESSO ---------- */
+#scrollProgress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px; width: 0%;
+  background: linear-gradient(90deg, #FFCC00 0%, #007A4D 100%);
+  z-index: 10000;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 10px rgba(0,122,77,.6);
+}
+
+/* ---------- BOTÃO VOLTAR AO TOPO ---------- */
+#backToTop {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #005335, #007A4D);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 22px rgba(0,83,53,.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(.9);
+  transition: opacity .3s ease, visibility .3s ease, transform .3s ease,
+              background .3s ease, box-shadow .3s ease;
+  z-index: 9999;
+}
+#backToTop.show {
+  opacity: 1; visibility: visible;
+  transform: translateY(0) scale(1);
+}
+#backToTop:hover {
+  background: linear-gradient(135deg, #007A4D, #00a865);
+  box-shadow: 0 10px 30px rgba(0,83,53,.6);
+  transform: translateY(-4px) scale(1.06);
+}
+#backToTop:active { transform: translateY(-1px) scale(.98); }
+#backToTop svg { width: 22px; height: 22px; }
+
+/* ---------- ANIMAÇÃO FADE-IN ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #005335, #007A4D);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #007A4D, #00a865);
+}
+
+/* ---------- PROMPTS DISCRETOS (visual mais limpo) ---------- */
+.jp-InputPrompt, .jp-OutputPrompt {
+  opacity: .35;
+  transition: opacity .2s ease;
+}
+.jp-Cell:hover .jp-InputPrompt,
+.jp-Cell:hover .jp-OutputPrompt { opacity: 1; }
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+  .jp-RenderedHTMLCommon h1 { font-size: 22px; }
+  .jp-RenderedHTMLCommon h2 { font-size: 18px; }
+  .jp-RenderedHTMLCommon h3 { font-size: 16px; }
+
+  .jp-RenderedHTMLCommon table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 12.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  }
+  .jp-RenderedHTMLCommon th,
+  .jp-RenderedHTMLCommon td { padding: 8px 10px; }
+
+  #backToTop {
+    width: 46px; height: 46px;
+    bottom: 18px; right: 18px;
+  }
+  #backToTop svg { width: 20px; height: 20px; }
+
+  .jp-InputPrompt, .jp-OutputPrompt { display: none !important; }
+  .jp-Notebook .jp-MarkdownOutput > div[style*="linear-gradient"] {
+    padding: 18px !important;
+    border-left-width: 6px !important;
+  }
+}
+</style>
+
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AnaliseFinanceiraPetrobras</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -7509,6 +7782,142 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+
+<script id="custom-improvements-js">
+(function () {
+  "use strict";
+
+  function init() {
+    /* ===== 1. Botão voltar ao topo ===== */
+    const btn = document.createElement("button");
+    btn.id = "backToTop";
+    btn.setAttribute("aria-label", "Voltar ao topo");
+    btn.title = "Voltar ao topo";
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="18 15 12 9 6 15"></polyline></svg>';
+    document.body.appendChild(btn);
+
+    /* ===== 2. Barra de progresso de leitura ===== */
+    const bar = document.createElement("div");
+    bar.id = "scrollProgress";
+    document.body.appendChild(bar);
+
+    /* ===== 3. Eventos de scroll (otimizado) ===== */
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const sh = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (sh > 0 ? (st / sh) * 100 : 0) + "%";
+        btn.classList.toggle("show", st > 400);
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    /* ===== 4. Animação fade-in nas células ===== */
+    if ("IntersectionObserver" in window) {
+      const obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
+      );
+      document
+        .querySelectorAll(".jp-Cell, .jp-OutputArea-output")
+        .forEach(function (el) {
+          el.classList.add("fade-in");
+          obs.observe(el);
+        });
+    }
+
+    /* ===== 5. Deixa o texto "Autor / Base / Data" escuro e visível ===== */
+    setTimeout(function () {
+      document
+        .querySelectorAll(".jp-RenderedMarkdown p, .jp-RenderedHTMLCommon p")
+        .forEach(function (p) {
+          const t = p.textContent || "";
+          if (
+            t.indexOf("Autor:") !== -1 ||
+            t.indexOf("Base:") !== -1 ||
+            t.indexOf("Data-base:") !== -1
+          ) {
+            p.style.color = "#1a1a1a";
+            p.style.fontWeight = "500";
+            p.style.lineHeight = "1.8";
+            p.style.background =
+              "linear-gradient(90deg, #f6faf8, #eef7f2)";
+            p.style.borderLeft = "4px solid #007A4D";
+            p.style.padding = "10px 14px";
+            p.style.borderRadius = "6px";
+          }
+        });
+    }, 250);
+
+    /* ===== 6. Redimensiona gráficos Plotly (responsividade real) ===== */
+    function resizePlotly() {
+      if (!window.Plotly) return;
+      document.querySelectorAll(".plotly-graph-div").forEach(function (d) {
+        try { window.Plotly.Plots.resize(d); } catch (e) {}
+      });
+    }
+    let rTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(rTimer);
+      rTimer = setTimeout(resizePlotly, 200);
+    });
+    setTimeout(resizePlotly, 900);
+    setTimeout(resizePlotly, 2500);
+    window.addEventListener("load", resizePlotly);
+
+    /* ===== 7. Links internos com scroll suave ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        const id = a.getAttribute("href");
+        if (id.length > 1) {
+          const target = document.querySelector(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      });
+    });
+
+    /* ===== 8. Reaplica animação em gráficos Plotly adicionados dinâmicamente ===== */
+    const mo = new MutationObserver(function () {
+      const cells = document.querySelectorAll(
+        ".jp-OutputArea-output:not(.fade-in)"
+      );
+      cells.forEach(function (c) {
+        c.classList.add("fade-in", "visible");
+      });
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b4fa9f9d">
