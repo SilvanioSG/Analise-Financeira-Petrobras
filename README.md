@@ -101,7 +101,7 @@ Divergência calculada vs. reportado do RI: **+1,3% na Dívida Líquida** (R$ 32
 
 ### 1. Evolução de Receita, EBIT e Lucro Líquido (2018–2024)
 
-![Receita, EBIT e Lucro Líquido](1-Petrobras%20%E2%80%94%20Receita%2C%20EBIT%20e%20Lucro%20L%C3%ADquido.PNG)
+![Receita, EBIT e Lucro Líquido](1-Petrobras%20%E2%80%94%20Receita%2C%20EBIT%20e%20Lucro%20L%C3%ADquido.png)
 
 ### 2. Decomposição da DRE — 2024
 
